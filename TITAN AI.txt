@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TITANS AI</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #111; color: #eee; }
+    .container { max-width: 800px; margin: auto; }
+    textarea { width: 100%; height: 150px; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: none; }
+    button { padding: 10px 20px; border: none; border-radius: 8px; margin-right: 5px; cursor: pointer; }
+    .output { white-space: pre-wrap; background: #222; padding: 15px; border-radius: 8px; margin-top: 15px; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>⚡ TITANS AI</h1>
+    <textarea id="inputText" placeholder="Type your text here..."></textarea><br/>
+    <button onclick="summarize()">Summarize</button>
+    <button onclick="sentiment()">Sentiment</button>
+    <button onclick="chat()">Chat</button>
+    <div class="output" id="result">Result will appear here...</div>
+  </div>
+
+  <script>
+    async function summarize() {
+      const text = document.getElementById('inputText').value;
+      document.getElementById('result').innerText = "📖 Summary: " + text.slice(0, 100) + "...";
+    }
+
+    async function sentiment() {
+      const text = document.getElementById('inputText').value.toLowerCase();
+      let mood = "Neutral 😐";
+      if(text.includes("good") || text.includes("love")) mood = "Positive 🙂";
+      if(text.includes("bad") || text.includes("hate")) mood = "Negative 🙁";
+      document.getElementById('result').innerText = "💡 Sentiment: " + mood;
+    }
+
+    async function chat() {
+      const text = document.getElementById('inputText').value;
+      document.getElementById('result').innerText = "🤖 TITANS AI says: I hear you said → " + text;
+    }
+  </script>
+</body>
+</html>
